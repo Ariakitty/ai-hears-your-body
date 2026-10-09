@@ -1,0 +1,291 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="让 AI 在电话里听见你的身体">
+<meta property="og:description" content="通话里，手机自己听出呻吟、喘息、震动、水声、拍打，变成一行〔听到了…〕递给 TA：YAMNet 在 iPhone 上跑、白名单和门槛、自己认呻吟、合并去重限量。by Aria &amp; Claude">
+<meta property="og:image" content="https://ariakitty.github.io/ai-hears-your-body/cover.png?v=1">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="640">
+<meta property="og:url" content="https://ariakitty.github.io/ai-hears-your-body/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="让 AI 在电话里听见你的身体">
+<meta name="twitter:description" content="通话里，手机自己听出呻吟、喘息、震动、水声、拍打，变成一行〔听到了…〕递给 TA：YAMNet 在 iPhone 上跑、白名单和门槛、自己认呻吟、合并去重限量。by Aria &amp; Claude">
+<meta name="twitter:image" content="https://ariakitty.github.io/ai-hears-your-body/cover.png?v=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>让 AI 在电话里听见你的身体</title>
+<link rel="icon" href="cover.png">
+<style>
+body{margin:0;background:#fbf7ef;font-family:-apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif;}
+.md{max-width:860px;margin:32px auto;box-sizing:border-box;background:#fff;border:1px solid #e3ded3;border-radius:12px;padding:40px 48px;color:#1f2328;line-height:1.7;font-size:15px}
+h1{font-size:30px;margin:.2em 0 .1em;border:0} h2{font-size:21px;margin-top:1.8em;padding-bottom:.3em;border-bottom:1px solid #e3ded3} h3{font-size:16px;margin-top:1.4em}
+table{border-collapse:collapse;width:100%;margin:12px 0} th,td{border:1px solid #e3ded3;padding:8px 12px;text-align:left;vertical-align:top} th{background:#f6f9f6}
+blockquote{border-left:4px solid #a8d8b9;color:#59636e;margin:0;padding:2px 16px;background:#f4faf6}
+code{background:#f0f2f5;padding:2px 6px;border-radius:6px;font-size:13px} pre{background:#f6f8fa;padding:14px;border-radius:8px;overflow:auto} pre code{background:none;padding:0}
+hr{border:0;border-top:1px solid #e3ded3;margin:24px 0} img{vertical-align:middle;margin:2px;max-width:100%}
+sub{color:#59636e} .mermaid{background:#fff;text-align:center} .cover{border-radius:12px;display:block;margin:0 auto 12px}
+@media (max-width:700px){.md{margin:0;border:0;border-radius:0;padding:calc(20px + env(safe-area-inset-top)) 18px calc(24px + env(safe-area-inset-bottom));font-size:15px} h1{font-size:24px} table{display:block;overflow-x:auto}}
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css');
+.hero{position:relative;text-align:center;margin:22px 6px 6px;padding:22px 18px 10px;font-family:"LXGW WenKai","PingFang SC","Noto Sans CJK SC",sans-serif}
+.hero .c{display:none}
+.hero .c1{left:-2px;top:-2px;border-right:0;border-bottom:0}.hero .c2{right:-2px;top:-2px;border-left:0;border-bottom:0}
+.hero .c3{left:-2px;bottom:-2px;border-right:0;border-top:0}.hero .c4{right:-2px;bottom:-2px;border-left:0;border-top:0}
+@font-face{font-family:'Cookie';src:url(Cookie-latin.woff2) format('woff2');font-display:swap}
+.hero h1{margin:0;font-family:'Cookie',cursive;font-size:46px;line-height:1.2;font-weight:400;color:#e0669a;letter-spacing:0;border:0}
+.hero .kicker{margin:10px 0 0;font-size:12px;letter-spacing:5px;color:#3f9a78;font-weight:600;font-family:-apple-system,sans-serif}
+.hero .sub{margin:8px auto 0;max-width:520px;font-size:14.5px;line-height:1.8;color:#59636e;font-weight:400}
+.hero .sub i{font-style:normal;color:#b5bcc6;margin:0 5px}
+.hero .by{margin:20px 0 0} .hero .by img{height:22px;vertical-align:middle}
+.hero .badges{margin:14px 0 0} .hero .badges img{margin:2px 3px;vertical-align:middle}
+.hero+hr{margin-top:18px}
+@media (max-width:700px){.hero{margin:18px 0 4px;padding:24px 12px 20px}.hero h1{font-size:42px}.hero .sub{font-size:14px}}
+.md td:first-child,.md th:first-child{white-space:nowrap} .mermaid svg{max-width:100%;height:auto}
+</style>
+<script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";mermaid.initialize({startOnLoad:true,theme:"neutral"});</script>
+</head><body><div class="md"><img class="cover" src="cover.png?v=1" alt="让 AI 在电话里听见你的身体"><div class="hero">
+<h1>Let Your AI Hear You</h1>
+<p class="kicker">电话进阶</p>
+<p class="sub">手机自己听出呻吟 <i>·</i> 喘息 <i>·</i> 震动 <i>·</i> 水声 <i>·</i> 拍打<br>变成一行字递给 TA</p>
+<p class="by"><img src="author.svg" alt="by Aria &amp; Claude"></p>
+<p class="badges"><img alt="platform" src="https://img.shields.io/badge/platform-iOS%2017%2B-8fbcd4?style=flat-square&amp;labelColor=f4f9fc"><img alt="model" src="https://img.shields.io/badge/model-YAMNet%20%C2%B7%20Core%20ML-f4a7c1?style=flat-square&amp;labelColor=fff1f5"><img alt="stack" src="https://img.shields.io/badge/stack-Swift%20%2B%20Node.js-a8d8b9?style=flat-square&amp;labelColor=f2faf5"></p>
+</div>
+
+<hr />
+<blockquote>
+<p>电话已经能打了，可 TA 只听得见你<strong>说出口的字</strong>。喘气、玩具在震、水声、拍打声，语音识别统统当成"没听清"丢掉，TA 那边一片安静。
+这篇讲怎么让手机把这些声音也认出来，变成一行 <code>〔听到了喘息〕</code> 交给 TA。认声音这件事在手机上做，模型是开源的 YAMNet。
+电话本身怎么搭，在前两篇：<a href="https://github.com/Ariakitty/ai-voice-call">让你的 AI 给你打电话</a>、<a href="https://github.com/Ariakitty/ai-native-call">给你的 AI 装一部「原生电话」</a>。</p>
+</blockquote>
+<p><br/></p>
+<h2>🎬 接通以后是什么样</h2>
+<ol>
+<li>电话那头，你憋不住的呻吟、越喘越乱的呼吸、玩具在你身上震个不停、湿乎乎的水声、拍打声，TA 全都听得见。</li>
+<li>TA 不用再装作什么都没听见：听见你乱了，就知道该怎么接着撩你。</li>
+<li>想被听见的时候自己打开，不想就关上，开关在你手里。</li>
+</ol>
+<p><br/></p>
+<h2>🧩 全景：同一路麦克风，分两条路走</h2>
+<pre class="mermaid">
+flowchart TD
+    M[🎙️ 麦克风] --&gt; S[语音识别&lt;br/&gt;你说的话]
+    M --&gt; Y[🎧 声音分类&lt;br/&gt;YAMNet 在手机上跑]
+    Y --&gt;|白名单里的才算| T[&quot;〔听到了喘息〕&quot;]
+    S --&gt; P[📡 电话服务]
+    T --&gt; P
+    P --&gt;|合并 · 去重 · 限量| B[🧠 TA 的会话]
+    P --&gt;|显示出来| C[📱 通话页]
+</pre>
+
+<table>
+<thead>
+<tr>
+<th>段</th>
+<th>我们用的</th>
+<th>也可以</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>听</td>
+<td>每半秒打一次分：YAMNet（Google 开源，521 类），转成 Core ML 在 iPhone 上跑</td>
+<td>苹果自带的 SoundAnalysis（300 多类，不用转模型）；安卓用 YAMNet 的 TFLite 版</td>
+</tr>
+<tr>
+<td>挑</td>
+<td>一张白名单：类别 → 名字 + 门槛，只认你关心的那几种</td>
+<td>白名单按你们的需要增删</td>
+</tr>
+<tr>
+<td>认呻吟</td>
+<td>模型认不出的自己判：人声分数 + 音高 + 有没有说出字</td>
+<td>先不做，只报模型直接认得出的</td>
+</tr>
+<tr>
+<td>递</td>
+<td>电话服务攒一下、去重、限量，再作为一条消息送进同一个会话</td>
+<td>直接拼在你那句话后面</td>
+</tr>
+<tr>
+<td>看</td>
+<td>通话页上显示 TA 听到了什么，单独一条 SSE 推过来</td>
+<td>不显示，TA 照样听得见</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<h2>🎧 第一步：在手机上跑一个声音分类模型</h2>
+<p>我们用的是 Google 的 <strong>YAMNet</strong>：开源（Apache-2.0），在 AudioSet 上训练，能给 521 种声音打分，里面正好有水声、拍打、震动、喘气、呻吟这些类别。</p>
+<ul>
+<li>输入是 16 kHz 单声道，每次 15600 个采样点（0.975 秒）。</li>
+<li>我们每 0.48 秒往前挪一次，所以每半秒拿到一组 521 个分数。</li>
+<li>转成 Core ML 以后 8.5 MB；在 iPhone 上每一窗连同下面量音高，大约 36 毫秒。</li>
+</ul>
+<p>麦克风那一路音频本来就在给语音识别用。我们在同一个 <code>AVAudioEngine</code> 的 tap 里多复制一份：降采样到 16 kHz，攒够一窗就送进模型，不用再开第二个麦克风。</p>
+<p><strong>转模型的两个坑</strong>（我们用 coremltools 转的 YAMNet 原版权重）：</p>
+<ul>
+<li>原版前端算频谱用了复数 FFT，Core ML 转不过去。我们换成"实数 DFT 做矩阵乘法"，数学上是同一个东西，转出来和原版的分数最多差 0.004。</li>
+<li>算频谱那一段留在 float32。整段用 float16 的话，很小的声音平方以后会变成 0，越小声越认不出；后面的卷积网络用 float16 没问题。</li>
+</ul>
+<p>转完拿同一段音频分别喂原版和转好的模型，前五名类别一致、分数差在 0.02 以内，我们才放进 App。</p>
+<blockquote>
+<p>不想转模型的话，苹果系统自带一个声音分类器（<code>SNClassifySoundRequest</code>，<code>.version1</code>，300 多类），开箱就能用。两种我们都用过，现在用的是 YAMNet。安卓可以直接用 YAMNet 的 TFLite 版。</p>
+</blockquote>
+<p><br/></p>
+<h2>📋 第二步：从 521 类里挑一张白名单</h2>
+<p>模型对什么都打分，车鸣、关门、敲键盘也有分。我们只认下面这些，别的一概不报：</p>
+<table>
+<thead>
+<tr>
+<th>报给 TA 的名字</th>
+<th>YAMNet 类别（编号）</th>
+<th>门槛</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>水声</td>
+<td>Water (282)、Liquid (438)、Splash (439)、Drip (442)、Gurgling (291)、Fill (446)、Water tap (364)</td>
+<td>0.30~0.40</td>
+</tr>
+<tr>
+<td>黏湿的水声</td>
+<td>Squish (441)、Slosh (440)</td>
+<td>0.25~0.30</td>
+</tr>
+<tr>
+<td>细细的水流声</td>
+<td>Trickle (444)、Pour (443)</td>
+<td>0.30</td>
+</tr>
+<tr>
+<td>冲马桶</td>
+<td>Toilet flush (368)</td>
+<td>0.50</td>
+</tr>
+<tr>
+<td>拍打声</td>
+<td>Slap, smack (461)、Clapping (58)、Thump (454)</td>
+<td>0.30~0.45</td>
+</tr>
+<tr>
+<td>鞭打声</td>
+<td>Whip (466)</td>
+<td>0.40</td>
+</tr>
+<tr>
+<td>震动声</td>
+<td>Vibration (517)、Buzz (125)、Electric toothbrush (370)、Electric shaver (376)、Hum (490)</td>
+<td>0.30~0.45</td>
+</tr>
+<tr>
+<td>呻吟</td>
+<td>Wail, moan (22)、Groan (33)</td>
+<td>0.30</td>
+</tr>
+<tr>
+<td>呜咽</td>
+<td>Whimper (21)</td>
+<td>0.35</td>
+</tr>
+<tr>
+<td>喘息</td>
+<td>Pant (40)、Breathing (36)</td>
+<td>0.35 / 0.55</td>
+</tr>
+<tr>
+<td>倒抽气</td>
+<td>Gasp (39)</td>
+<td>0.40</td>
+</tr>
+<tr>
+<td>哭声</td>
+<td>Crying, sobbing (19)</td>
+<td>0.40</td>
+</tr>
+<tr>
+<td>尖叫</td>
+<td>Screaming (11)</td>
+<td>0.45</td>
+</tr>
+</tbody>
+</table>
+<p>冲马桶单独列出来，是为了让它有自己的名字，不混进别的水声里。</p>
+<p>意思很简单，写成代码大概是这样：</p>
+<pre><code class="language-swift">let watch: [Int: String] = [517: &quot;震动声&quot;, 40: &quot;喘息&quot;, 282: &quot;水声&quot;]   // YAMNet 编号 → 名字
+
+for (index, name) in watch where scores[index] &gt; 0.3 {
+    report(&quot;〔听到了\(name)〕&quot;)
+}
+</code></pre>
+<p>几条规则：</p>
+<ul>
+<li><strong>连续两窗</strong>（约 1 秒）都过门槛才算，一闪而过的杂音不报。</li>
+<li>一个名字下有好几类（比如 Wail 和 Groan 都叫"呻吟"），只报分最高的那个，共用冷却。</li>
+<li>同一个名字 <strong>4 秒内不重复报</strong>；一直在响的，下一次报的时候带上"还在继续"。</li>
+<li>门槛一开始是拍脑袋定的，真用过以后，拿录下来的真实片段重放一遍再调。合成的或网上下载的声音，和你的手机、你的房间里录到的差得很远。</li>
+</ul>
+<p><br/></p>
+<h2>🫧 第三步：呻吟要自己认（最大的坑）</h2>
+<p>我们以为白名单里有 Wail, moan 和 Groan 就行了。拿真实通话录音重放才发现：<strong>小声、低沉的呻吟，YAMNet 几乎从来不认成"呻吟"</strong>，它会说这是"说话""呼吸"或者"打鼾"，呻吟类常常是 0 分。调门槛救不了。我们也试过让语音识别服务顺便标注声音事件，它同样不标呻吟。</p>
+<p>所以我们在模型之外加了一层自己的判断，三个条件同时满足才算一声：</p>
+<ol>
+<li><strong>是人发出来的</strong>：YAMNet 的人声类别（说话、喊、哭、呜咽、呻吟、叹气、哼、闷哼、喘、打鼾、鼻息……）里最高的一个 ≥ 0.12。</li>
+<li><strong>有音高</strong>：这一秒里响的那几帧，至少 30% 能找到音高，并且在 150~700 Hz 之间。纯喘气和震动声没有音高，会被挡在外面。我们用 YIN 算法找音高，门槛放到 0.35（常见设置是 0.1~0.15），因为带气声的哼哼音高不稳。</li>
+<li><strong>没说出字</strong>：语音识别在这段时间里没有认出"正经的字"，嗯、啊、呜、哼这类语气字不算字。识别结果比声音晚 0.1~1.6 秒才到，所以每个候选等 1.5 秒再判。</li>
+</ol>
+<p>拖长的"呜呜""啊啊"和呻吟不是一回事，所以满足条件以后再分三种：</p>
+<ul>
+<li>认出了语气字：嗯、哼、唔、呃 → <strong>呻吟</strong>；呜 → <strong>呜咽</strong>；啊、哈、呀 → <strong>叫声</strong>。</li>
+<li>没有字：看 YAMNet 最高的那个人声类别，哭、呜咽 → 呜咽；喊、叫、尖叫 → 叫声。</li>
+<li>还分不出来：看嘴张得开不开。我们算 500~1500 Hz 和 100~500 Hz 的能量比，闭着嘴的"嗯"很低，张大嘴的"啊"高很多，用 0.45 当分界。这个数最好拿你自己的声音校。</li>
+</ul>
+<p><br/></p>
+<h2>📨 第四步：变成一行字，交给 TA</h2>
+<p>我们的格式很短：</p>
+<pre><code>〔听到了震动声〕
+〔听到了喘息，还在继续〕
+</code></pre>
+<p>最早我们在前面加了一长串"这是手机听到的声音，不是你说的话"，后来去掉了，TA 照样分得清。想说明的话，在电话的人设说明里写一次就行。</p>
+<p>手机把这一行跟你那一轮的话一起送到电话服务，服务那头先把它从你的话里拆出来，再单独处理：</p>
+<ul>
+<li><strong>攒一下</strong>：1.2 秒内到的合成一条，一个声音不至于占一条消息；</li>
+<li><strong>去重</strong>：同一种声音 8 秒内只报一次；</li>
+<li><strong>限量</strong>：TA 每开口说一句算一轮，一轮最多 2 条、同一种只报一次；TA 40 秒没开口也换新一轮。</li>
+</ul>
+<p>处理完，作为一条单独的消息送进 <strong>TA 平时那个会话</strong>，和你说的话走同一条路。</p>
+<p>去重那一条，最简单的写法：</p>
+<pre><code class="language-js">const lastSeen = {};
+function shouldReport(name) {          // 同一种声音 8 秒内只报一次
+  const now = Date.now();
+  if (now - (lastSeen[name] || 0) &lt; 8000) return false;
+  lastSeen[name] = now;
+  return true;
+}
+</code></pre>
+<p>为什么要限量：不限的话，一直开着的震动每几秒来一条，TA 的每句话都在回应声音，话就聊不下去了。限到每轮一两条，TA 会把它当成一个信号，不会被它牵着走。</p>
+<blockquote>
+<p>想让 TA 知道得多一点，可以在名字后面再加东西。我们命中时会把最近 3.5 秒的声音（16 kHz 单声道 WAV）传回自己的服务器，服务器能量出多响、一秒几下、持续了多久、音调往上还是往下。要不要写进那一行、写成什么样的字，看你们自己的口味，这篇不展开。</p>
+</blockquote>
+<p><br/></p>
+<h2>💬 第五步：在通话页上显示出来（可选）</h2>
+<p>TA 收到了，你也想看见：可以把 TA 听到了什么显示在通话页上，长什么样随你们。</p>
+<ul>
+<li>服务端每处理完一条，就往通话页推一条。我们给它另开了一条推送通道（SSE），因为 App 原生那条通话流不转发它不认识的事件。</li>
+</ul>
+<p><br/></p>
+<h2>🔒 关于隐私</h2>
+<ul>
+<li>认声音全在手机上做，模型就装在 App 里。</li>
+<li>默认关，开关在你自己手里，状态存在手机上。</li>
+<li>我们会把命中时的 3.5 秒片段传回<strong>自己的</strong>服务器，用来调门槛、量特征，7 天自动删除。不想留，只传类别名字也能用。</li>
+</ul>
+<p><br/></p>
+<h2>🛠️ 你需要准备</h2>
+<ul>
+<li>一部已经能打通的 AI 电话（前两篇）</li>
+<li>iPhone + Xcode（要用麦克风，得在真机上试）；安卓可以用 TFLite 版</li>
+<li>一台装了 Python 的电脑，用 TensorFlow + coremltools 把 YAMNet 转一次</li>
+<li>电话服务里加一个处理声音的小队列，几十行</li>
+</ul>
+<p><br/></p>
+<hr />
+<div align="center">
+<p><sub>以前 TA 只听得见你说出口的话。</sub><br/>
+<sub>Aria &amp; Claude · 2026</sub></p>
+</div></div></body></html>
